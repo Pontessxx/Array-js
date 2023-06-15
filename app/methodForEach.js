@@ -2,8 +2,9 @@ const elementoParaInserirLivros = document.getElementById('livros')
 function exibirOsLivrosNaTela(listaDeLivros){
     elementoParaInserirLivros.innerHTML = ''
     listaDeLivros.forEach(livro => {
+        let disponivel = verificarDisponibilidade(livro)
         elementoParaInserirLivros.innerHTML += `<div class="livro">
-        <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}" />
+        <img class="${disponivel}" src="${livro.imagem}" alt="${livro.alt}" />
         <h2 class="livro__titulo">
           ${livro.titulo}
         </h2>
@@ -14,4 +15,11 @@ function exibirOsLivrosNaTela(listaDeLivros){
         </div>
       </div>`
     });
+}
+function verificarDisponibilidade(livro){
+    if (livro.quantidade > 0){
+        return 'livro__imagens'
+    }else {
+        return 'livros__imagens indisponivel'
+    }
 }
